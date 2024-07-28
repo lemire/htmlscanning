@@ -143,20 +143,6 @@ void process(std::string filename) {
         }
       }));
   pretty_print(
-      size * repeat, volume * repeat, "neon_match64_r",
-      bench([&data, &count, repeat]() {
-        for (size_t r = 0; r < repeat; r++) {
-
-          const char *start = data.data();
-          const char *end = start + data.size();
-          neon_match64_r m(start, end);
-          while (m.advance()) {
-            count = *m.get(); // volatile assignment (compiler cannot cheat)
-            m.consume();
-          }
-        }
-      }));
-  pretty_print(
       size * repeat, volume * repeat,  "AdvanceStringWebKit", bench([&data, &count, repeat]() {
         for (size_t r = 0; r < repeat; r++) {
           const char *start = data.data();
