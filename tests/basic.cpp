@@ -47,29 +47,25 @@ bool run_basic(std::function<void(const char *&start, const char *end)> f) {
 }
 
 int main() {
-  if (!run_basic(AdvanceString)) {
-    std::cerr << "AdvanceString failed" << std::endl;
+  if (!run_basic(NaiveAdvanceString)) {
+    std::cerr << "NaiveAdvanceString failed" << std::endl;
     return EXIT_FAILURE;
   } else {
-    std::cout << "AdvanceString passed" << std::endl;
+    std::cout << "NaiveAdvanceString passed" << std::endl;
   }
-  if (!run_basic(AdvanceStringTable)) {
-    std::cerr << "AdvanceStringTable failed" << std::endl;
+#if defined(__aarch64__)
+  if (!run_basic(AdvanceStringWebKit)) {
+    std::cerr << "AdvanceStringWebKit failed" << std::endl;
     return EXIT_FAILURE;
   } else {
-    std::cout << "AdvanceStringTable passed" << std::endl;
+    std::cout << "AdvanceStringWebKit passed" << std::endl;
   }
-  if (!run_basic(AdvanceStringTableSimpler)) {
-    std::cerr << "AdvanceStringTableSimpler failed" << std::endl;
+  if (!run_basic(AdvanceStringChromium)) {
+    std::cerr << "AdvanceStringChromium failed" << std::endl;
     return EXIT_FAILURE;
   } else {
-    std::cout << "AdvanceStringTableSimpler passed" << std::endl;
+    std::cout << "AdvanceStringChromium passed" << std::endl;
   }
-  if (!run_basic(AdvanceStringTableSimpler2)) {
-    std::cerr << "AdvanceStringTableSimpler2 failed" << std::endl;
-    return EXIT_FAILURE;
-  } else {
-    std::cout << "AdvanceStringTableSimpler2 passed" << std::endl;
-  }
+#endif
   return EXIT_SUCCESS;
 }
